@@ -2,11 +2,14 @@ import GrillaVideojuegos from "../components/GrillaVideojuegos"
 import Titulo from "../components/Titulo"
 import Filtro from "../components/Filtro"
 import { useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 
 function VideojuegosPage() {
     const categorias = [
         "FPS", "RPG", "Estrategia"
     ]
+
+    const navigate = useNavigate()
 
     const lista = [{
         nombre: "CSGO",
@@ -34,8 +37,13 @@ function VideojuegosPage() {
         }
     }
 
+    function logout() {
+        localStorage.clear()
+        navigate("/")
+    }
+
     return <div className="px-4">
-        <Titulo />
+        <Titulo onLogout={logout}/>
         <Filtro categorias={categorias} onFiltro={filtrar} />
         <hr className="mb-4" />
         <GrillaVideojuegos listaVideojuegos={listaVideojuegos} />
