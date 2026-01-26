@@ -19,7 +19,7 @@ function LoginPage() {
                 ingreso: true,
                 cantidadIntentos: 0
             }
-            localStorage.setItem("DATOS_LOGIN", datosLogin)
+            localStorage.setItem("DATOS_LOGIN", JSON.stringify(datosLogin))
 
         }
         else {
