@@ -14,6 +14,13 @@ function LoginPage() {
             console.log("Login correcto")
             navigate("/main")
             setMsjVisible(false)
+
+            const datosLogin = {
+                ingreso: true,
+                cantidadIntentos: 0
+            }
+            localStorage.setItem("DATOS_LOGIN", datosLogin)
+
         }
         else {
             console.log("Login correcto")
