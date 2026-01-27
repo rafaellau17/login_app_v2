@@ -27,7 +27,7 @@ function VideojuegosPage() {
 
     useEffect(function () {
         async function obtenerCategoriasHTTP() {
-            const URL = "https://script.google.com/macros/s/AKfycbxMZbg2ZTtWjfgmRVP25A2Kt6i02_SDLcu1asfc9CKNXDxLISrTxqaoK5pdgBrjmc1Ijw/exec?tipo=categorias"
+            const URL = "https://script.google.com/macros/s/AKfycbwN_f3ANnjp4W4-MTf-2gmHT3KZZeNPXiQsaeyWEmOlcAzms8TaGk65eyU-z4Neuz_ISg/exec?tipo=categorias"
             const response = await fetch(URL)
 
             if (!response.ok) {
@@ -42,7 +42,7 @@ function VideojuegosPage() {
     }, [])
 
     async function filtrar(categoria) {
-        const URL = "https://script.google.com/macros/s/AKfycbxMZbg2ZTtWjfgmRVP25A2Kt6i02_SDLcu1asfc9CKNXDxLISrTxqaoK5pdgBrjmc1Ijw/exec"
+        const URL = "https://script.google.com/macros/s/AKfycbwN_f3ANnjp4W4-MTf-2gmHT3KZZeNPXiQsaeyWEmOlcAzms8TaGk65eyU-z4Neuz_ISg/exec"
         let response
         if (categoria == "-1") {
             response = await fetch(URL)
