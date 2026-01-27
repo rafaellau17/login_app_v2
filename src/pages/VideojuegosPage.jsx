@@ -5,13 +5,10 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 function VideojuegosPage() {
-    const categorias = [
-        "FPS", "RPG", "Estrategia"
-    ]
-
     const navigate = useNavigate()
 
     const [listaVideojuegos, setListaVideojuegos] = useState([])
+    const [categorias, setCategorias] = useState([])
 
     useEffect(function () {
         async function obtenerVideojuegosHTTP() {
@@ -25,19 +22,28 @@ function VideojuegosPage() {
             const data = await response.json()
             setListaVideojuegos(data)
         }
-        obtenerVideojuegosHTTP();
+        obtenerVideojuegosHTTP()
     }, [])
 
-    function filtrar(categoria) {
-        if (categoria == "-1") {
-            setListaVideojuegos(listaVideojuegos)
+    useEffect(function () {
+        async function obtenerCategoriasHTTP() {
+            const URL = "https://script.google.com/macros/s/AKfycbxMZbg2ZTtWjfgmRVP25A2Kt6i02_SDLcu1asfc9CKNXDxLISrTxqaoK5pdgBrjmc1Ijw/exec?tipo=categorias"
+            const response = await fetch(URL)
+
+            if (!response.ok) {
+                console.error("Error de peticion: " + response.status)
+                return
+            }
+
+            const data = await response.json()
+            setCategorias(data)
         }
-        else {
-            const listaVideojuegosModificada = listaVideojuegos.filter(function (vj) {
-                return vj.categoria == categoria
-            })
-            setListaVideojuegos(listaVideojuegosModificada)
-        }
+        obtenerCategoriasHTTP()
+    }, [])
+
+    async function filtrar(categoria) {
+        const URL = "https://script.google.com/macros/s/AKfycbxMZbg2ZTtWjfgmRVP25A2Kt6i02_SDLcu1asfc9CKNXDxLISrTxqaoK5pdgBrjmc1Ijw/exec"
+        const response = await fetch(`${URL}?categoria=${categoria}`)
     }
 
     function logout() {
