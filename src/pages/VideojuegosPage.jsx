@@ -43,7 +43,20 @@ function VideojuegosPage() {
 
     async function filtrar(categoria) {
         const URL = "https://script.google.com/macros/s/AKfycbxMZbg2ZTtWjfgmRVP25A2Kt6i02_SDLcu1asfc9CKNXDxLISrTxqaoK5pdgBrjmc1Ijw/exec"
-        const response = await fetch(`${URL}?categoria=${categoria}`)
+        let response
+        if (categoria == "-1") {
+            response = await fetch(URL)
+        }
+        else {
+            response = await fetch(`${URL}?categoria=${categoria}`)
+        }
+        if(!response.ok) {
+            console.error("Error de peticion" + response.status)
+            return
+        }
+
+        const data = await response.json()
+        setListaVideojuegos(data)
     }
 
     function logout() {

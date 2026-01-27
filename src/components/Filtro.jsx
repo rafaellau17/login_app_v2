@@ -13,7 +13,7 @@ function Filtro({ categorias, onFiltro }) {
                 <option value={"-1"}>Seleccionar categoría</option>
                 {
                     categorias.map(function (categoria) {
-                        return <option key={categoria} value={categoria}>
+                        return <option key={categoria.id} value={categoria.id}>
                             {categoria.nombre}</option>
                     })
                 }
