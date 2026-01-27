@@ -11,6 +11,11 @@ function VideojuegosPage() {
 
     const navigate = useNavigate()
 
+    function obtenerVideojuegosHTTP() {
+        const URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiLtCG2QO9ojxUcwqiSou_YnRe3yyq3zvGrhqw80lxUiRfBl-LxTV6Q6d_2lm_LFf5rD7u9xxqswpEuZmshZMn87TPsnQRAssUqglCgkxdHxEdYPufwoVCoIHEKOHczAbZacinsCm2Tgv2l0FxSij4RCt_cevSXUWcrRY5_d4KVr5WmYVK77ng2D5JS_ao68-6_QOnjcM97bsMZW0GaW2pvQMUOHHJYrV054blJHpB0T-DNGhWUKtB0iZrqpiwn4auxIXNZyxzNHliuu0S-lZt7xODbp-O33hdCqLDa&lib=MwotjRmUun0RLlzJNoicmGhJptMVnD4LO"
+        const response = await fetch(URL)
+    }
+
     const lista = [{
         nombre: "CSGO",
         imagen: "/imagenes/csgo.jpg",
