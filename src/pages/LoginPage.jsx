@@ -34,10 +34,10 @@ function LoginPage() {
         })
         if (resp.status != 200) {
             // Error en login
-            console.error(resp.statusText)
+            const data = await resp.json()
+            console.error(data)
             return false
         }
-        const data = await resp.json()
         if (data.msg == "Acceso concedido") {
             return true
         }
