@@ -46,7 +46,7 @@ function LoginPage() {
 
     async function Login(correo, password) {
         const resultadoLogin = await loginHTTP(correo, password)
-        
+
         if (resultadoLogin) {
             navigate("/main")
             setMsjVisible(false)
