@@ -27,7 +27,10 @@ function LoginPage() {
                 body: JSON.stringify({
                     "username": correo,
                     "password": password
-            })
+            }),
+            headers: {
+                "content-type": "application/json"
+            }
         })
         if (resp.status != 200) {
             // Error en login
