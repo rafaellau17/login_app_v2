@@ -20,8 +20,34 @@ function LoginPage() {
         }
     }, [])
 
-    function Login(correo, password) {
-        if (correo == "PW" && password == "123") {
+    async function loginHTTP(correo, password) {
+        const resp = await fetch("http://127.0.0.1:8000/login",
+            {
+                method: "post",
+                body: JSON.stringify({
+                    "username": correo,
+                    "password": password
+            })
+        })
+        if (resp.status != 200) {
+            // Error en login
+            console.error(resp.statusText)
+            return false
+        }
+        const data = await resp.json()
+        if (data.msg == "Acceso concedido") {
+            return true
+        }
+        else {
+            console.error(data.detail)
+            return false
+        }
+    }
+
+    async function Login(correo, password) {
+        const resultadoLogin = await loginHTTP(correo, password)
+        
+        if (resultadoLogin) {
             navigate("/main")
             setMsjVisible(false)
 
