@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/login_app_v2">
       <Routes>
           <Route path='/' element={ <LoginPage />} />
           <Route path='/main' element={ <VideojuegosPage />} />
