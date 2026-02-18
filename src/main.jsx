@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './main.css'
 import LoginPage from './pages/LoginPage'
 import VideojuegosPage from './pages/VideojuegosPage'
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

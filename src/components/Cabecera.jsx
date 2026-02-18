@@ -1,6 +1,8 @@
+import imagen from "/imagenes/p1.jpg"
+
 function Cabecera() {
     return <div>
-        <img className="w-full" src="/imagenes/p1.jpg" />
+        <img className="w-full" src={imagen} />
     </div>
 }
 
