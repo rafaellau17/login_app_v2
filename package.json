@@ -1,7 +1,7 @@
 {
   "name": "login_app",
-  "homepage": "https://rafaellau17.github.io/login_app_v2/",
-  "private": true,
+  "homepage": "https://rafaellau17.github.io/login_app_v2",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
