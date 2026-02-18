@@ -12,52 +12,72 @@ function VideojuegosPage() {
 
     useEffect(function () {
         async function obtenerVideojuegosHTTP() {
-            const URL = "https://script.google.com/macros/s/AKfycbxMZbg2ZTtWjfgmRVP25A2Kt6i02_SDLcu1asfc9CKNXDxLISrTxqaoK5pdgBrjmc1Ijw/exec"
-            const response = await fetch(URL)
+            const URL = "http://127.0.0.1:8000/videojuegos/"
+            const response = await fetch(URL,
+                {
+                    headers: {
+                        "x-token": localStorage.getItem("TOKEN")
+                    }
+                }
+            )
 
             if (!response.ok) {
                 console.error("Error de peticion" + response.status)
                 return
             }
             const data = await response.json()
-            setListaVideojuegos(data)
+            setListaVideojuegos(data.data)
         }
         obtenerVideojuegosHTTP()
     }, [])
 
     useEffect(function () {
         async function obtenerCategoriasHTTP() {
-            const URL = "https://script.google.com/macros/s/AKfycbwN_f3ANnjp4W4-MTf-2gmHT3KZZeNPXiQsaeyWEmOlcAzms8TaGk65eyU-z4Neuz_ISg/exec?tipo=categorias"
-            const response = await fetch(URL)
-
+            const URL = "http://127.0.0.1:8000/categorias/"
+            const response = await fetch(URL,
+                {
+                    headers: {
+                        "x-token": localStorage.getItem("TOKEN")
+                    }
+                }
+            )
             if (!response.ok) {
                 console.error("Error de peticion: " + response.status)
                 return
             }
 
             const data = await response.json()
-            setCategorias(data)
+            setCategorias(data.data)
         }
         obtenerCategoriasHTTP()
     }, [])
 
     async function filtrar(categoria) {
-        const URL = "https://script.google.com/macros/s/AKfycbwN_f3ANnjp4W4-MTf-2gmHT3KZZeNPXiQsaeyWEmOlcAzms8TaGk65eyU-z4Neuz_ISg/exec"
+        const URL = "http://127.0.0.1:8000/videojuegos/"
         let response
+    
         if (categoria == "-1") {
-            response = await fetch(URL)
+            response = await fetch(URL, {
+                headers: {
+                    "x-token": localStorage.getItem("TOKEN")
+                }
+            })
+        } else {
+            response = await fetch(`${URL}?categoria=${categoria}`, {
+                headers: {
+                    "x-token": localStorage.getItem("TOKEN")
+                }
+            })
         }
-        else {
-            response = await fetch(`${URL}?categoria=${categoria}`)
-        }
-        if(!response.ok) {
-            console.error("Error de peticion" + response.status)
+    
+        if (!response.ok) {
+            console.error("Error de peticion " + response.status)
             return
         }
-
+    
         const data = await response.json()
-        setListaVideojuegos(data)
-    }
+        setListaVideojuegos(data.data)
+    }    
 
     function logout() {
         localStorage.clear()

@@ -32,13 +32,14 @@ function LoginPage() {
                 "content-type": "application/json"
             }
         })
+        const data = await resp.json()
         if (resp.status != 200) {
             // Error en login
-            const data = await resp.json()
             console.error(data)
             return false
         }
         if (data.msg == "Acceso concedido") {
+            localStorage.setItem("TOKEN", data.token)
             return true
         }
         else {
